@@ -7,3 +7,12 @@ edition = "2021"
 
 [dependencies]
 rodio = "0.17.3"
+egui = "0.26.2"
+eframe = {features = [
+    "default",
+    "__screenshot", # __screenshot is so we can dump a screenshot using EFRAME_SCREENSHOT_TO
+] }
+env_logger = { version = "0.11.2", default-features = false, features = [
+    "auto-color",
+    "humantime",
+] }
