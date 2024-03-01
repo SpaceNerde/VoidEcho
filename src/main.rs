@@ -51,6 +51,10 @@ impl MusicApp {
     }
 
     fn load_file(&mut self, file_path: &PathBuf) {
+        // clear sink
+        self.sink.clear();
+        self.sink.play();
+
         // load the file provided and convert it into a source
         let file = BufReader::new(File::open(file_path).unwrap());
         let source = Decoder::new(file).unwrap();
@@ -115,7 +119,7 @@ impl eframe::App for MusicApp {
             if !(self.sink.empty()) {
                 let progress_bar = ProgressBar::new(
                     self.time().as_secs_f32() / self.total_duration.unwrap()
-                ).show_percentage();
+                );
                 ui.add(progress_bar);
             }
             ctx.request_repaint();
